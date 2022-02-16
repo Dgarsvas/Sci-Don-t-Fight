@@ -8,13 +8,10 @@ public class CameraLookController : MonoBehaviour
 {
     [SerializeField] private Transform lookTarget;
     [SerializeField] private PlayerMovementController movement;
-    
+
     void Update()
     {
-        if (!movement.IsMoving)
-        {
-            HandleRotationAroundCharacter();
-        }
+        HandleRotationAroundCharacter();
     }
 
     private void HandleRotationAroundCharacter()
