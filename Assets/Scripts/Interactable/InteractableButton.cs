@@ -36,6 +36,7 @@ public class InteractableButton : InteractableBase
 
     public override void InteractionStart()
     {
+        Debug.Log("Interaction Start");
         onButtonPress?.Invoke();
     }
 }

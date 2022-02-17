@@ -65,7 +65,9 @@ MonoBehaviour:
   interactionDistance: 5
   layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
+  interactionKey: 101
+  currentInteractable: {fileID: 0}
 --- !u!114 &2896945945146236557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,6 +82,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 2896945946124439014}
   movement: {fileID: 2896945945146236559}
+  mouseSensitivity: 15
+  maxAngle: 85
 --- !u!1 &2896945946124439013
 GameObject:
   m_ObjectHideFlags: 0
