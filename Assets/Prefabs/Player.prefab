@@ -49,6 +49,11 @@ MonoBehaviour:
   rb: {fileID: 2896945946141567074}
   col: {fileID: 2896945946141567075}
   lookController: {fileID: 2896945945146236557}
+  jumpForce: 200
+  walkSpeed: 2
+  overlapBoxOffset: 0.7
+  playerCam: {fileID: 0}
+  lookTarget: {fileID: 2896945946124439014}
 --- !u!114 &2896945945146236558
 MonoBehaviour:
   m_ObjectHideFlags: 0
