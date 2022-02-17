@@ -9,17 +9,17 @@ public class CameraLookController : MonoBehaviour
     [SerializeField] private Transform lookTarget;
     [SerializeField] private PlayerMovementController movement;
 
-    public float mouseSensitivity = 15f;
-    
-    float x = 0f;
-    float y = 0f;
+    [Header("Look Settings")]
+    [SerializeField] float mouseSensitivity = 15f;
+    [SerializeField] float maxAngle = 85f;
 
-    //float xRotation = 0f;
+    private float x = 0f;
+    private float y = 0f;
 
     void Update()
     {
         HandleRotationAroundCharacter();
-        
+
     }
 
     private void HandleRotationAroundCharacter() //TODO
@@ -33,6 +33,6 @@ public class CameraLookController : MonoBehaviour
         //lookTarget.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         //lookTarget.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        lookTarget.transform.localEulerAngles = new Vector3(y,x,0);
+        lookTarget.transform.localEulerAngles = new Vector3(Mathf.Clamp(y, -maxAngle, maxAngle), x, 0);
     }
 }
