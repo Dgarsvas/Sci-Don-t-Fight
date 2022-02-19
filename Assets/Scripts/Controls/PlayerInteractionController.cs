@@ -11,7 +11,7 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] LayerMask layers;
     [SerializeField] private KeyCode interactionKey;
 
-    [SerializeField] [ReadOnly(true)] private InteractableBase currentInteractable;
+    [ReadOnly] [SerializeField] private InteractableBase currentInteractable;
 
     void Update()
     {

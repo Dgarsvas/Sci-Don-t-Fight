@@ -2,17 +2,17 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BaseEnemy : BaseAI
+[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
+public class BaseEnemy : BaseEntity
 {
-    [SerializeField] protected StateMachine _stateMachine;
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected NavMeshAgent navMeshAgent;
-    [SerializeField] protected Animator animator;
 
+    protected StateMachine stateMachine;
 
     private void Update()
     {
-        _stateMachine?.Tick();
+        stateMachine?.Tick();
     }
 
     public override void TakeDamage(float damage, Vector3 dir)

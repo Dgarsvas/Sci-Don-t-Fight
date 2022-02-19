@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2896945945146236559}
   - component: {fileID: 2896945945146236558}
   - component: {fileID: 2896945945146236557}
+  - component: {fileID: 8732511957575007951}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
   layers:
     serializedVersion: 2
     m_Bits: 55
-  interactionKey: 101
+  interactionKey: 102
   currentInteractable: {fileID: 0}
 --- !u!114 &2896945945146236557
 MonoBehaviour:
@@ -84,6 +85,27 @@ MonoBehaviour:
   movement: {fileID: 2896945945146236559}
   mouseSensitivity: 15
   maxAngle: 85
+--- !u!114 &8732511957575007951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896945945146236556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3fc4c575e0a0e341a815fe5113881a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quickAccessUsables:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentSelection: 0
+  currentlySelected: {fileID: 0}
+  nextUsable: 101
+  previousUsable: 113
+  quickAccess: 
 --- !u!1 &2896945946124439013
 GameObject:
   m_ObjectHideFlags: 0
