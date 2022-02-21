@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2896945946141567078}
+  - {fileID: 2896945946124439014}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,10 +50,10 @@ MonoBehaviour:
   rb: {fileID: 2896945946141567074}
   col: {fileID: 2896945946141567075}
   lookController: {fileID: 2896945945146236557}
-  jumpForce: 200
-  walkSpeed: 2
+  jumpForce: 300
+  walkSpeed: 3
+  turnSmoothTime: 0.1
   overlapBoxOffset: 0.7
-  playerCam: {fileID: 0}
   lookTarget: {fileID: 2896945946124439014}
 --- !u!114 &2896945945146236558
 MonoBehaviour:
@@ -86,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 2896945946124439014}
+  playerTransform: {fileID: 2896945946141567078}
   movement: {fileID: 2896945945146236559}
   mouseSensitivity: 15
   maxAngle: 85
@@ -116,8 +118,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2896945946141567078}
-  m_RootOrder: 0
+  m_Father: {fileID: 2896945945146236560}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2896945946141567073
 GameObject:
@@ -149,8 +151,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2896945946124439014}
+  m_Children: []
   m_Father: {fileID: 2896945945146236560}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

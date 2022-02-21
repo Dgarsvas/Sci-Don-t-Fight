@@ -8,13 +8,18 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Collider col;
     [SerializeField] private CameraLookController lookController;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float walkSpeed;
     [SerializeField] private float overlapBoxOffset;
     [SerializeField] private Transform lookTarget;
 
+    [Header("Movement Settings")]
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float turnSmoothTime;
+
     // is this how you declare constants in C# scripts?
     private int numCollidersInPlayerToIgnore;
+
+    private float turnSmoothVelocity;
 
     public bool IsOnGround
     {
@@ -39,11 +44,7 @@ public class PlayerMovementController : MonoBehaviour
 
         if (IsOnGround)
         {
-            HandleMovement();
-        }
-        if (IsMoving)
-        {
-            HandleRotation();
+            HandleMovementAndRotation();
         }
     }
 
@@ -63,26 +64,26 @@ public class PlayerMovementController : MonoBehaviour
         IsMoving = rb.velocity.magnitude > 0.0f;
     }
 
-    private void HandleRotation()
+    private void HandleMovementAndRotation()
     {
-       // Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
-      // transform.Rotate()
-        //rb.MoveRotation(Quaternion.Euler(0.0f, lookTarget.rotation.y, 0.0f));
-
-        // I don't know how to work around this. Can't rotate transforms because then lookTarget also rotates
-        // Could move rotation to this script but then CameraLookController.cs doesn't seem useful anymore
-        // rotating RB doesn't seem to work for some reason
-        // HELP
-    }
-
-    private void HandleMovement()
-    {
-        float sideMovement = Input.GetAxis("Horizontal") * walkSpeed / 2* Time.deltaTime;
-        float fwdMovement = Input.GetAxis("Vertical") * walkSpeed * Time.deltaTime;
+        float sideMovement = Input.GetAxisRaw("Horizontal") * walkSpeed;
+        float fwdMovement = Input.GetAxisRaw("Vertical") * walkSpeed;
 
         // If i use rigidbody here then it starts jittering. Probably because physics updates happen every fixed update or something like that.
         // Should I update the position of transform or RB?
-        transform.position += new Vector3(sideMovement, 0.0f, fwdMovement);
+        var direction = new Vector3(sideMovement, 0.0f, fwdMovement).normalized;
+
+        if (direction.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + lookTarget.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(rb.rotation.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            rb.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
+
+            Vector3 moveDir = Quaternion.Euler(0.0f, targetAngle, 0.0f) * Vector3.forward;
+            // Problem with this is that this gives no velocity
+            // e.g. when you jump while moving you will jump straight up
+            rb.MovePosition(rb.position + moveDir.normalized * walkSpeed * Time.deltaTime);
+        }
     }
 
     private void HandleJump() 
