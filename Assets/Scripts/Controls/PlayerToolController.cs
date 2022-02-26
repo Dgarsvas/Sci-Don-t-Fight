@@ -67,7 +67,9 @@ public class PlayerToolController : MonoBehaviour
 
     private bool HandleSelectionInputs(out int newSelection)
     {
-        throw new NotImplementedException();
+        newSelection = 0;
+        return false;
+        //throw new NotImplementedException();
     }
 
     private void ChangeCurrentSelection(int select)
@@ -79,6 +81,6 @@ public class PlayerToolController : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }

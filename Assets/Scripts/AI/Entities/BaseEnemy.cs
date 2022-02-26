@@ -7,12 +7,16 @@ public class BaseEnemy : BaseEntity
 {
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected NavMeshAgent navMeshAgent;
+    private bool isDead;
 
     protected StateMachine stateMachine;
 
     private void Update()
     {
-        stateMachine?.Tick();
+        if (!isDead)
+        {
+            stateMachine?.Tick();
+        }
     }
 
     public override void TakeDamage(float damage, Vector3 dir)
@@ -21,6 +25,7 @@ public class BaseEnemy : BaseEntity
 
         if (health <= 0)
         {
+            isDead = true;
             rb.isKinematic = false;
             rb.AddForce(dir * 500f);
         }
