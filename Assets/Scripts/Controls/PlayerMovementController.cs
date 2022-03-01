@@ -20,7 +20,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject stepRayUpper;
     [SerializeField] private GameObject stepRayLower;
     [SerializeField] private float stepHeight = 0.3f;
-    [SerializeField] private float stepSmooth = 0.1f;
+    [SerializeField] private float stepSmooth = 1f;
 
     private bool IsOnGround()
     {
@@ -54,7 +54,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hitUpper, 0.6f, groundLayers))
             {
-                rb.position += new Vector3(0f, stepSmooth * Time.deltaTime, 0f);
+                rb.position += new Vector3(0f, stepSmooth * Time.fixedDeltaTime, 0f);
             }
         }
 
@@ -62,7 +62,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f, 0, 1), out RaycastHit hitUpper45, 0.6f))
             {
-                rb.position += new Vector3(0f, stepSmooth * Time.deltaTime, 0f);
+                rb.position += new Vector3(0f, stepSmooth * Time.fixedDeltaTime, 0f);
             }
         }
 
@@ -71,7 +71,7 @@ public class PlayerMovementController : MonoBehaviour
 
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f, 0, 1), out RaycastHit hitUpperMinus45, 0.6f, groundLayers))
             {
-                rb.position += new Vector3(0f, stepSmooth * Time.deltaTime, 0f);
+                rb.position += new Vector3(0f, stepSmooth * Time.fixedDeltaTime, 0f);
             }
         }
     }

@@ -6,15 +6,44 @@ using UnityEngine;
 
 public class PlayerInteractionController : MonoBehaviour
 {
-    [SerializeField] private Transform lookTarget;
+    [Header("Required Fields")]
+    [SerializeField] private Transform interactTarget;
     [SerializeField] private float interactionDistance;
     [SerializeField] LayerMask layers;
     [SerializeField] private KeyCode interactionKey;
 
     [ReadOnly] [SerializeField] private InteractableBase currentInteractable;
 
+    private const int QUICK_ACCESS_AMOUNT = 3;
+
+    [Header("Selection data READ-ONLY")]
+    [ReadOnly] [SerializeField] private BaseUsableSO[] quickAccessUsables;
+    [ReadOnly] [SerializeField] private int currentSelection;
+    [ReadOnly] [SerializeField] private BaseUsableSO currentlySelected;
+
+    [Header("Inputs")]
+    [SerializeField] private KeyCode nextUsable;
+    [SerializeField] private KeyCode previousUsable;
+    [SerializeField] private KeyCode[] quickAccess;
+
+    void Awake()
+    {
+        quickAccessUsables = new BaseUsableSO[QUICK_ACCESS_AMOUNT];
+        ChangeCurrentSelection(0);
+    }
+
+
     void Update()
     {
+        UpdateInteractionTarget();
+
+        if (HandleSelectionInputs(out int newSelection))
+        {
+            ChangeCurrentSelection(newSelection);
+        }
+
+        HandleUseInputs();
+
         if (HandleRayCast(out InteractableBase interactable))
         {
             currentInteractable = interactable;
@@ -49,10 +78,24 @@ public class PlayerInteractionController : MonoBehaviour
 
     }
 
+    private void UpdateInteractionTarget()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width/2f, Screen.height/2f));
+        Debug.DrawRay(ray.origin, ray.direction, Color.green);
+        if (Physics.Raycast(ray, out RaycastHit info, 200f, layers))
+        {
+            interactTarget.LookAt(info.point);
+        }
+        else
+        {
+            interactTarget.LookAt(ray.GetPoint(200));
+        }
+    }
+
     private bool HandleRayCast(out InteractableBase interactable)
     {
-        Debug.DrawRay(lookTarget.position, lookTarget.forward * interactionDistance, Color.red);
-        if (Physics.Raycast(lookTarget.position, lookTarget.forward, out RaycastHit hit, interactionDistance, layers))
+        Debug.DrawRay(interactTarget.position, interactTarget.forward * interactionDistance, Color.red);
+        if (Physics.Raycast(interactTarget.position, interactTarget.forward, out RaycastHit hit, interactionDistance, layers))
         {
             interactable = hit.transform.GetComponent<InteractableBase>();
             if (interactable != null)
@@ -73,5 +116,58 @@ public class PlayerInteractionController : MonoBehaviour
             interactable = null;
             return false;
         }
+    }
+
+    private void HandleUseInputs()
+    {
+        if (currentlySelected == null)
+        {
+            return;
+        }
+
+        if (Input.GetMouseButtonDown((int)UsageEnum.Primary))
+        {
+            currentlySelected.StartUse(UsageEnum.Primary);
+        }
+        else if (Input.GetMouseButton((int)UsageEnum.Primary))
+        {
+            currentlySelected.ContinueUse(UsageEnum.Primary);
+        }
+        else if (Input.GetMouseButtonUp((int)UsageEnum.Primary))
+        {
+            currentlySelected.EndUse(UsageEnum.Primary);
+        }
+
+        if (Input.GetMouseButtonDown((int)UsageEnum.Secondary))
+        {
+            currentlySelected.StartUse(UsageEnum.Secondary);
+        }
+        else if (Input.GetMouseButton((int)UsageEnum.Secondary))
+        {
+            currentlySelected.ContinueUse(UsageEnum.Secondary);
+        }
+        else if (Input.GetMouseButtonUp((int)UsageEnum.Secondary))
+        {
+            currentlySelected.EndUse(UsageEnum.Secondary);
+        }
+    }
+
+    private bool HandleSelectionInputs(out int newSelection)
+    {
+        newSelection = 0;
+        return false;
+        //throw new NotImplementedException();
+    }
+
+    private void ChangeCurrentSelection(int select)
+    {
+        currentlySelected = quickAccessUsables[select];
+        currentSelection = select;
+        UpdateDisplay();
+    }
+
+    private void UpdateDisplay()
+    {
+        //throw new NotImplementedException();
     }
 }
