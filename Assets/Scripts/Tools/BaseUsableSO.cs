@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,5 +18,9 @@ public abstract class BaseUsableSO : ScriptableObject
 
     public abstract void ContinueUse(UsageEnum usageType);
 
+    public abstract void BeingHeld();
+
     public abstract void EndUse(UsageEnum usageType);
+
+    public abstract void Setup(Transform point);
 }

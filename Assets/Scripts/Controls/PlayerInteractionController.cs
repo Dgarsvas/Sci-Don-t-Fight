@@ -17,7 +17,7 @@ public class PlayerInteractionController : MonoBehaviour
     private const int QUICK_ACCESS_AMOUNT = 3;
 
     [Header("Selection data READ-ONLY")]
-    [ReadOnly] [SerializeField] private BaseUsableSO[] quickAccessUsables;
+    [SerializeField] private BaseUsableSO[] quickAccessUsables;
     [ReadOnly] [SerializeField] private int currentSelection;
     [ReadOnly] [SerializeField] private BaseUsableSO currentlySelected;
 
@@ -28,7 +28,7 @@ public class PlayerInteractionController : MonoBehaviour
 
     void Awake()
     {
-        quickAccessUsables = new BaseUsableSO[QUICK_ACCESS_AMOUNT];
+        //quickAccessUsables = new BaseUsableSO[QUICK_ACCESS_AMOUNT];
         ChangeCurrentSelection(0);
     }
 
@@ -81,20 +81,23 @@ public class PlayerInteractionController : MonoBehaviour
     private void UpdateInteractionTarget()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width/2f, Screen.height/2f));
-        Debug.DrawRay(ray.origin, ray.direction, Color.green);
-        if (Physics.Raycast(ray, out RaycastHit info, 200f, layers))
+        Debug.DrawRay(ray.origin, ray.direction * 200f, Color.green);
+
+        if (Physics.Raycast(ray.origin, ray.direction, out RaycastHit info, 200f, layers))
         {
+            Debug.Log("yay");
             interactTarget.LookAt(info.point);
         }
         else
         {
-            interactTarget.LookAt(ray.GetPoint(200));
+            Debug.Log("blet");
+            interactTarget.LookAt(ray.GetPoint(200f));
         }
     }
 
     private bool HandleRayCast(out InteractableBase interactable)
     {
-        Debug.DrawRay(interactTarget.position, interactTarget.forward * interactionDistance, Color.red);
+        Debug.DrawRay(interactTarget.position, interactTarget.forward * 200f, Color.red);
         if (Physics.Raycast(interactTarget.position, interactTarget.forward, out RaycastHit hit, interactionDistance, layers))
         {
             interactable = hit.transform.GetComponent<InteractableBase>();
@@ -150,6 +153,8 @@ public class PlayerInteractionController : MonoBehaviour
         {
             currentlySelected.EndUse(UsageEnum.Secondary);
         }
+
+        currentlySelected.BeingHeld();
     }
 
     private bool HandleSelectionInputs(out int newSelection)
@@ -162,6 +167,7 @@ public class PlayerInteractionController : MonoBehaviour
     private void ChangeCurrentSelection(int select)
     {
         currentlySelected = quickAccessUsables[select];
+        currentlySelected.Setup(interactTarget);
         currentSelection = select;
         UpdateDisplay();
     }

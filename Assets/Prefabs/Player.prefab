@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2896945945146236557}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,14 +255,12 @@ MonoBehaviour:
   interactionKey: 102
   currentInteractable: {fileID: 0}
   quickAccessUsables:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 367bb2f1049a04b43aa4c05974443125, type: 2}
   currentSelection: 0
   currentlySelected: {fileID: 0}
   nextUsable: 101
   previousUsable: 113
-  quickAccess: 
+  quickAccess: 31000000
 --- !u!114 &2896945945146236557
 MonoBehaviour:
   m_ObjectHideFlags: 0

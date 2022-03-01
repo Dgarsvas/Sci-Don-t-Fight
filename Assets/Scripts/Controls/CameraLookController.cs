@@ -21,6 +21,11 @@ public class CameraLookController : MonoBehaviour
 
     private const float RETURN_SPEED = 5f;
 
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     void FixedUpdate()
     {
         HandleRotationAroundCharacter();
