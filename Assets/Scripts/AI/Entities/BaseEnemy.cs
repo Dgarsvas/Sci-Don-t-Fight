@@ -2,11 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
+[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody), typeof(Animator))]
 public class BaseEnemy : BaseEntity
 {
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected NavMeshAgent navMeshAgent;
+    [SerializeField] protected Animator animator;
     private bool isDead;
 
     protected StateMachine stateMachine;
@@ -16,6 +17,10 @@ public class BaseEnemy : BaseEntity
         if (!isDead)
         {
             stateMachine?.Tick();
+
+            // hopefully I can do that here
+            float cooldown = animator.GetFloat("attackCooldown");
+            animator.SetFloat("attackCooldown",  cooldown - Time.deltaTime);
         }
     }
 

@@ -4817,6 +4817,7 @@ GameObject:
   - component: {fileID: 4738866805011868638}
   - component: {fileID: 4738866805011868639}
   - component: {fileID: 4738866805011868636}
+  - component: {fileID: 622325633562718777}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -4906,7 +4907,27 @@ MonoBehaviour:
   health: 100
   rb: {fileID: 4738866805011868639}
   navMeshAgent: {fileID: 4738866805011868638}
+  animator: {fileID: 1200565447613066365}
   player: {fileID: 0}
+--- !u!95 &622325633562718777
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738866805011868637}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4738866803580932588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4983,5 +5004,10 @@ PrefabInstance:
 --- !u!4 &5064701565616027143 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36503213fd52c4c40bd0af35b9ef56c3, type: 3}
+  m_PrefabInstance: {fileID: 4738866803580932588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1200565447613066365 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 36503213fd52c4c40bd0af35b9ef56c3, type: 3}
   m_PrefabInstance: {fileID: 4738866803580932588}
   m_PrefabAsset: {fileID: 0}
