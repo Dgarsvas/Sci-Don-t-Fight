@@ -21,6 +21,11 @@ public class PlaceHolderProjectile : Projectile
         
     }
 
+    public override void Launch(Vector3 pos)
+    {
+
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         BaseEntity entity = collision.gameObject.GetComponent<BaseEntity>();

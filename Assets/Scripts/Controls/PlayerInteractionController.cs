@@ -85,12 +85,10 @@ public class PlayerInteractionController : MonoBehaviour
 
         if (Physics.Raycast(ray.origin, ray.direction, out RaycastHit info, 200f, layers))
         {
-            Debug.Log("yay");
             interactTarget.LookAt(info.point);
         }
         else
         {
-            Debug.Log("blet");
             interactTarget.LookAt(ray.GetPoint(200f));
         }
     }
