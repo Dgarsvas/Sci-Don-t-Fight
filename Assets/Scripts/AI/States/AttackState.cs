@@ -30,8 +30,9 @@ public class AttackState : IState
 
     public void OnEnter()
     {
+
         ammo = STARTER_AMMO;
-        signalMaterial.SetColor("_EmissionColor", Color.red);
+        signalMaterial.SetColor("_EmissionColor", Color.red * 3.5f);
     }
 
     public void OnExit()

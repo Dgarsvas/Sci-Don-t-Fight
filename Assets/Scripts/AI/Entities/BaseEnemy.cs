@@ -9,10 +9,10 @@ public class BaseEnemy : BaseEntity
     [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Material signalMaterial;
+
     private bool isDead;
 
     protected StateMachine stateMachine;
-    protected IState previousState; 
 
     private void Update()
     {

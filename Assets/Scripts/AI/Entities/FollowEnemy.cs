@@ -19,7 +19,7 @@ public class FollowEnemy : BaseEnemy
 
         var chaseState = new ChaseState(navMeshAgent, player, signalMaterial, transform);
         var attackState = new AttackState(animator, player, transform, projectile, signalMaterial);
-        var idleState = new IdleState(animator, transform, signalMaterial);
+        var idleState = new IdleState(navMeshAgent, animator, transform, signalMaterial);
 
         stateMachine.AddTransition(chaseState, attackState, () => { return animator.GetFloat("attackCooldown") <= Mathf.Epsilon; });
         // transition should happen when attack animation stops playing. This is the best I could manage to implement

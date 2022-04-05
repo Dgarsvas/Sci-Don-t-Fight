@@ -26,7 +26,7 @@ public class ChaseState : IState
         if ((selfTransform.position - target.position).magnitude > CLOSE_ENOUGH)
             agent.SetDestination(target.position);
 
-        signalMaterial.SetColor("_EmissionColor", Color.blue);
+        signalMaterial.SetColor("_EmissionColor", Color.blue * 3.0f);
     }
 
     public void OnExit()
