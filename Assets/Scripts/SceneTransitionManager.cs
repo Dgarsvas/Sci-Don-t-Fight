@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SceneTransitionManager : MonoBehaviour
 {
     public delegate void OnSceneLoadedHandler(string sceneName);
-    public event OnSceneLoadedHandler OnSceneLoadedEvent;
+    public static event OnSceneLoadedHandler OnSceneLoadedEvent;
 
     public bool IsTransitionActive
     {
