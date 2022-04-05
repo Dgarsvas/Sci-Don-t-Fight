@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -195,7 +195,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19642
+  m_Name: pb_Mesh20604
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -425,7 +425,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19666
+  m_Name: pb_Mesh20628
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2150,6 +2150,11 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1484562649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2896945945146236556, guid: 70f6d17ec1f8ea04585114a66aa12b8c, type: 3}
+  m_PrefabInstance: {fileID: 2896945947014635616}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1489319043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,7 +2842,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19678
+  m_Name: pb_Mesh20640
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3497,6 +3502,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 412468034, guid: 8548c68d38010ae478492d99fe1bf9c5, type: 3}
+      propertyPath: playerRef
+      value: 
+      objectReference: {fileID: 1484562649}
     - target: {fileID: 4738866805011868626, guid: 8548c68d38010ae478492d99fe1bf9c5, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -3549,7 +3558,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4738866805011868639, guid: 8548c68d38010ae478492d99fe1bf9c5, type: 3}
+    - {fileID: 622325633562718777, guid: 8548c68d38010ae478492d99fe1bf9c5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8548c68d38010ae478492d99fe1bf9c5, type: 3}
 --- !u!1001 &8333137651195733668
 PrefabInstance:

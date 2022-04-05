@@ -2,15 +2,17 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody), typeof(Animator))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class BaseEnemy : BaseEntity
 {
-    [SerializeField] protected Rigidbody rb;
+   // [SerializeField] protected Rigidbody rb;
     [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] protected Animator animator;
+    [SerializeField] protected Material signalMaterial;
     private bool isDead;
 
     protected StateMachine stateMachine;
+    protected IState previousState; 
 
     private void Update()
     {
@@ -31,8 +33,8 @@ public class BaseEnemy : BaseEntity
         if (health <= 0)
         {
             isDead = true;
-            rb.isKinematic = false;
-            rb.AddForce(dir * 500f);
+           // rb.isKinematic = false;
+           // rb.AddForce(dir * 500f);
         }
     }
 

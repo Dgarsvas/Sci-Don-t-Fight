@@ -4818,6 +4818,7 @@ GameObject:
   - component: {fileID: 4738866805011868639}
   - component: {fileID: 4738866805011868636}
   - component: {fileID: 622325633562718777}
+  - component: {fileID: 412468034}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -4905,9 +4906,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  rb: {fileID: 4738866805011868639}
   navMeshAgent: {fileID: 4738866805011868638}
   animator: {fileID: 1200565447613066365}
+  signalMaterial: {fileID: 2100000, guid: 02624e41a3b06b24aa0a9f2c4b366b16, type: 2}
+  fov: {fileID: 412468034}
   player: {fileID: 0}
   projectile: {fileID: 5935518131626771607, guid: 74f141d785ba94eb1bee679a3e931e45, type: 3}
 --- !u!95 &622325633562718777
@@ -4929,6 +4931,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &412468034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738866805011868637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 342adc266f4a4e040b0a75125fade7c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 8
+  angle: 145
+  playerRef: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 8
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  canSeePlayer: 0
 --- !u!1001 &4738866803580932588
 PrefabInstance:
   m_ObjectHideFlags: 0
