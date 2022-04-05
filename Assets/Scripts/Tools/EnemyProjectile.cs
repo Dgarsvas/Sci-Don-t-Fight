@@ -69,6 +69,7 @@ public class EnemyProjectile : Projectile
 
     private void Update()
     {
+        //TODO: add lifetime so it doesnt live forever
         if(isFlying)
         {
             transform.rotation = Quaternion.LookRotation(rb.velocity) * initialRot;

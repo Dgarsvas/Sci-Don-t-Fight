@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class AttackState : IState
@@ -9,9 +10,9 @@ public class AttackState : IState
     private Material signalMaterial;
 
     private Animator animator;
-    private const float ATTACK_COOLDOWN_TIME = 2f;
+    private const float ATTACK_COOLDOWN_TIME = 2.5f;
     private const float WHEN_TO_FIRE_PROJECTILE = 0.9f;
-    private const uint STARTER_AMMO = 1;
+    private const uint STARTER_AMMO = 5;
     private Vector3 projectileSpawnOffset;
     private uint ammo;
 
@@ -35,17 +36,24 @@ public class AttackState : IState
 
     public void OnExit()
     {
-        animator.SetFloat("attackCooldown", ATTACK_COOLDOWN_TIME);
+        animator.SetFloat("attackCooldown", Random.Range(1.0f, ATTACK_COOLDOWN_TIME));
     }
 
     public void Tick()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Goblin Attack") && 
-            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= WHEN_TO_FIRE_PROJECTILE && ammo > 0)
+
+        selfTransform.LookAt(new Vector3(target.position.x, selfTransform.position.y, target.position.z), Vector3.up);
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Goblin Attack") && 
+            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= WHEN_TO_FIRE_PROJECTILE)
         {
-            ammo--;
-            var projectile = GameObject.Instantiate(attackProjectile, selfTransform.position + projectileSpawnOffset, attackProjectile.transform.rotation);
-            projectile.GetComponent<Projectile>().Launch(target.position);
+            for (int i = 0; i < ammo; i++)
+            {
+                var randomOffset = new Vector3(Random.Range(0.0f, 3.0f), 0.0f, Random.Range(0.0f, 3.0f));
+                var projectile = GameObject.Instantiate(attackProjectile, selfTransform.position + projectileSpawnOffset, attackProjectile.transform.rotation);
+                projectile.GetComponent<Projectile>().Launch(target.position + randomOffset);
+            }
+            ammo = 0;
         }
     }
 

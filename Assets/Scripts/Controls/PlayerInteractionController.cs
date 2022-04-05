@@ -28,6 +28,10 @@ public class PlayerInteractionController : MonoBehaviour
 
     void Awake()
     {
+        //TODO: move this to some global manager script
+        // ignore collisions between projectiles
+        Physics.IgnoreLayerCollision(7, 7);
+
         //quickAccessUsables = new BaseUsableSO[QUICK_ACCESS_AMOUNT];
         ChangeCurrentSelection(0);
     }
