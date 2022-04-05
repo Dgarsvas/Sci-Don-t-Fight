@@ -24,7 +24,7 @@ public class AttackState : IState
         this.signalMaterial = signalMaterial;
 
         // TODO: fix offset so projectile comes out of head and not back of head
-        projectileSpawnOffset = new Vector3(selfTransform.position.x, selfTransform.position.y + 2.0f, selfTransform.position.z);
+        projectileSpawnOffset = new Vector3(0.0f, 2.0f, 0.0f);
     }
 
     public void OnEnter()

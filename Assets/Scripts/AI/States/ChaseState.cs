@@ -23,8 +23,8 @@ public class ChaseState : IState
     public void OnEnter()
     {
         agent.isStopped = false;
-        if ((selfTransform.position - target.position).magnitude > CLOSE_ENOUGH)
-            agent.SetDestination(target.position);
+       // if ((selfTransform.position - target.position).magnitude > CLOSE_ENOUGH)
+       //     agent.SetDestination(target.position);
 
         signalMaterial.SetColor("_EmissionColor", Color.blue);
     }
@@ -36,7 +36,7 @@ public class ChaseState : IState
 
     public void Tick()
     {
-        if((selfTransform.position - target.position).magnitude > CLOSE_ENOUGH)
-            agent.SetDestination(target.position);
+       // if((selfTransform.position - target.position).magnitude > CLOSE_ENOUGH)
+       //     agent.SetDestination(target.position);
     }
 }
