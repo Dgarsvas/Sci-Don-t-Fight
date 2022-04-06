@@ -55,7 +55,7 @@ public class SceneTransitionManager : MonoBehaviour
         StartCoroutine(AnimateEnd());
     }
 
-    public bool LoadScene(string sceneName)
+    public bool LoadScene(string sceneName, Action onSceneLoad = null)
     {
         if (IsTransitionActive)
         {
@@ -64,16 +64,20 @@ public class SceneTransitionManager : MonoBehaviour
 
         IsTransitionActive = true;
 
+        PlayerPrefs.SetString("lastLevel", sceneName); //TODO make an actual save system
+
+        Application.backgroundLoadingPriority = ThreadPriority.Low;
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
         operation.allowSceneActivation = false;
 
-        StartCoroutine(LoadSceneCoroutine(operation, sceneName));
+        StartCoroutine(LoadSceneCoroutine(operation, onSceneLoad));
         return true;
     }
 
-    private IEnumerator LoadSceneCoroutine(AsyncOperation operation, string sceneName)
+    private IEnumerator LoadSceneCoroutine(AsyncOperation operation, Action onSceneLoad)
     {
-        yield return AnimateStart(operation);
+        yield return AnimateStart(operation, onSceneLoad);
     }
 
     private IEnumerator AnimateStart(AsyncOperation operation, Action callback = null)
@@ -85,7 +89,7 @@ public class SceneTransitionManager : MonoBehaviour
         {
             if (timer < animationTime)
             {
-                timer += Time.deltaTime;
+                timer += Time.unscaledDeltaTime;
                 background.anchoredPosition = new Vector2(0, curve.Evaluate(1f - timer / animationTime) * Screen.height);
             }
             else if (!doneAnimating)
@@ -109,7 +113,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         while (timer < animationTime)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             background.anchoredPosition = new Vector2(0, curve.Evaluate(timer / animationTime) * Screen.height);
             yield return null;
         }
@@ -120,15 +124,8 @@ public class SceneTransitionManager : MonoBehaviour
         IsTransitionActive = false;
     }
     
-    [ContextMenu("LoadMenu")]
     public void LoadMenu()
     {
         LoadScene("MenuScene");
     }   
-
-    [ContextMenu("LoadTestScene")]
-    public void LoadTestScene()
-    {
-        LoadScene("TestScene");
-    }
 }
