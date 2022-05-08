@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// How to use: add script to game object in scene
+// add game objects to scene and make them children of this object for convenience.
+// add them to the list below in order the npc is supposed traverse the points.
+
+
 [DefaultExecutionOrder(-1)]
 public class GlobalNavigationController : Singleton<GlobalNavigationController>
 { 
     // TODO: provide more convenient way to supply points
     // ordered in way you're supposed to go
     [SerializeField] private List<GameObject> OrderedListOfPointsForNavigation;
+
+    public bool hasPoints => OrderedListOfPointsForNavigation != null && OrderedListOfPointsForNavigation.Count > 0;
 
 
     public Vector3 GetClosestPoint(Vector3 pos)

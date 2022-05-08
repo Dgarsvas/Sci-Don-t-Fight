@@ -24,7 +24,6 @@ public class AttackState : IState
         this.selfTransform = selfTransform;
         this.signalMaterial = brainRenderer.material;
 
-        // TODO: fix offset so projectile comes out of head and not back of head
         projectileSpawnOffset = new Vector3(0.0f, 2.0f, 0.0f);
     }
 

@@ -16,6 +16,8 @@ public class FollowEnemy : BaseEnemy
         fov.OnEnterView += PlayerEnteredFOV;
         fov.OnExitView += PlayerExitedFOV;
 
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+
         stateMachine = new StateMachine();
 
         var chaseState = new ChaseState(navMeshAgent, player, brainRenderer, transform);
@@ -31,7 +33,7 @@ public class FollowEnemy : BaseEnemy
 
 
         // initial state should be idle
-        stateMachine.SetState(chaseState);
+        stateMachine.SetState(idleState);
     }
 
     void PlayerEnteredFOV()

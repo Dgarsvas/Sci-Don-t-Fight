@@ -25,8 +25,14 @@ public class IdleState : IState
         agent.isStopped = false;
         signalMaterial.SetColor("_EmissionColor", Color.yellow * 3.0f);
 
-        var target = GlobalNavigationController.Instance.GetClosestPoint(selfTransform.position);
-        agent.SetDestination(target);
+        Debug.Log(GlobalNavigationController.Instance.enabled);
+
+        var navCon = GlobalNavigationController.Instance;
+        if (navCon.hasPoints)
+        {
+            var target = GlobalNavigationController.Instance.GetClosestPoint(selfTransform.position);
+            agent.SetDestination(target);
+        }
     }
 
     public void OnExit()
@@ -36,12 +42,15 @@ public class IdleState : IState
 
     public void Tick()
     {
-
-        if (!agent.pathPending)
+        var navCon = GlobalNavigationController.Instance;
+        if (navCon.hasPoints)
         {
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (!agent.pathPending)
             {
-                agent.SetDestination(GlobalNavigationController.Instance.GetNextPoint(agent.destination));
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    agent.SetDestination(GlobalNavigationController.Instance.GetNextPoint(agent.destination));
+                }
             }
         }
     }
