@@ -4890,7 +4890,7 @@ MonoBehaviour:
   health: 100
   navMeshAgent: {fileID: 4738866805011868638}
   animator: {fileID: 1200565447613066365}
-  signalMaterial: {fileID: 2100000, guid: 02624e41a3b06b24aa0a9f2c4b366b16, type: 2}
+  brainRenderer: {fileID: 2420317398107508805}
   fov: {fileID: 412468034}
   player: {fileID: 0}
   projectile: {fileID: 5935518131626771607, guid: 74f141d785ba94eb1bee679a3e931e45, type: 3}
@@ -4997,5 +4997,10 @@ Transform:
 --- !u!95 &1200565447613066365 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 36503213fd52c4c40bd0af35b9ef56c3, type: 3}
+  m_PrefabInstance: {fileID: 4738866803580932588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &2420317398107508805 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6941568310520594857, guid: 36503213fd52c4c40bd0af35b9ef56c3, type: 3}
   m_PrefabInstance: {fileID: 4738866803580932588}
   m_PrefabAsset: {fileID: 0}

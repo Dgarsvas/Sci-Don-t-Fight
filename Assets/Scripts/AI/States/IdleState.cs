@@ -12,12 +12,12 @@ public class IdleState : IState
     private Animator animator;
 
 
-    public IdleState(NavMeshAgent navMeshAgent, Animator animator, Transform selfTransform, Material signalMaterial)
+    public IdleState(NavMeshAgent navMeshAgent, Animator animator, Transform selfTransform, Renderer brainRenderer)
     {
         this.agent = navMeshAgent;
         this.animator = animator;
         this.selfTransform = selfTransform;
-        this.signalMaterial = signalMaterial;
+        this.signalMaterial = brainRenderer.material;
     }
 
     public void OnEnter()

@@ -12,11 +12,11 @@ public class ChaseState : IState
 
     // TODO: since our enemy is a ranged based one it would make more sense if it wouldn't go to the exact position
     // where the player is but somewhere near
-    public ChaseState(NavMeshAgent navMeshAgent, Transform chaseTarget, Material signalMaterial, Transform selfTransform)
+    public ChaseState(NavMeshAgent navMeshAgent, Transform chaseTarget, Renderer brainRenderer, Transform selfTransform)
     {
         agent = navMeshAgent;
         target = chaseTarget;
-        this.signalMaterial = signalMaterial;
+        this.signalMaterial = brainRenderer.material;
         this.selfTransform = selfTransform;
     }
 

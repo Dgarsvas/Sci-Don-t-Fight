@@ -16,13 +16,13 @@ public class AttackState : IState
     private Vector3 projectileSpawnOffset;
     private uint ammo;
 
-    public AttackState(Animator animator, Transform chaseTarget, Transform selfTransform, GameObject projectile, Material signalMaterial)
+    public AttackState(Animator animator, Transform chaseTarget, Transform selfTransform, GameObject projectile, Renderer brainRenderer)
     {
         this.animator = animator;
         target = chaseTarget;
         attackProjectile = projectile;
         this.selfTransform = selfTransform;
-        this.signalMaterial = signalMaterial;
+        this.signalMaterial = brainRenderer.material;
 
         // TODO: fix offset so projectile comes out of head and not back of head
         projectileSpawnOffset = new Vector3(0.0f, 2.0f, 0.0f);

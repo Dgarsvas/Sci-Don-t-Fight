@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 // name of this is prolly not very good for what we do here now
@@ -17,9 +18,9 @@ public class FollowEnemy : BaseEnemy
 
         stateMachine = new StateMachine();
 
-        var chaseState = new ChaseState(navMeshAgent, player, signalMaterial, transform);
-        var attackState = new AttackState(animator, player, transform, projectile, signalMaterial);
-        var idleState = new IdleState(navMeshAgent, animator, transform, signalMaterial);
+        var chaseState = new ChaseState(navMeshAgent, player, brainRenderer, transform);
+        var attackState = new AttackState(animator, player, transform, projectile, brainRenderer);
+        var idleState = new IdleState(navMeshAgent, animator, transform, brainRenderer);
 
         stateMachine.AddTransition(chaseState, attackState, () => { return animator.GetFloat("attackCooldown") <= Mathf.Epsilon; });
         // transition should happen when attack animation stops playing. This is the best I could manage to implement
