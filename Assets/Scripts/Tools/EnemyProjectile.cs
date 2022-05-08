@@ -63,6 +63,7 @@ public class EnemyProjectile : Projectile
             entity.TakeDamage(damage, collision.impulse);
         }
 
+        transform.rotation = Quaternion.identity;
         Instantiate(particles, transform.position, transform.rotation);
         Destroy(gameObject);
     }
