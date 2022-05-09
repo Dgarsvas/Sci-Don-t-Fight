@@ -10,4 +10,6 @@ public abstract class BaseEntity : MonoBehaviour
     public abstract void TakeDamage(float damage, Vector3 direction);
 
     public abstract void Despawn();
+
+    public abstract void GetFrozen(float freezeTime);
 }

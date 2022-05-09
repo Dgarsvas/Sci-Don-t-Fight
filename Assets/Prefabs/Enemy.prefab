@@ -87,6 +87,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 4738866805011868638}
   animator: {fileID: 1200565447613066365}
   brainRenderer: {fileID: 2420317398107508805}
+  IceCube: {fileID: 4639129898039509713, guid: 28f47d67e19244d0ca0e8286b6f6c1a3, type: 3}
   fov: {fileID: 412468034}
   player: {fileID: 0}
   projectile: {fileID: 5935518131626771607, guid: 74f141d785ba94eb1bee679a3e931e45, type: 3}

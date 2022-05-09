@@ -17,6 +17,7 @@ public class FollowEnemy : BaseEnemy
         fov.OnExitView += PlayerExitedFOV;
 
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        freezeTime = 0.0f;
 
         stateMachine = new StateMachine();
 
@@ -30,6 +31,9 @@ public class FollowEnemy : BaseEnemy
         stateMachine.AddTransition(chaseState, idleState, () => { return !animator.GetBool("isAlert"); });
         stateMachine.AddTransition(attackState, idleState, () => { return !animator.GetBool("isAlert"); });
         stateMachine.AddTransition(idleState, chaseState, () => { return animator.GetBool("isAlert"); });
+
+        //stateMachine.AddAnyTransition(freezeState, () => { return freezeTime.time > 0.0f; });
+       // stateMachine.
 
 
         // initial state should be idle
