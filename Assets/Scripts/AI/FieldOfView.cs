@@ -10,6 +10,10 @@ public class FieldOfView : MonoBehaviour
     public delegate void ExitView();
     public event ExitView OnExitView;
 
+    public AudioSource Enemy_music_source;
+    public AudioClip Enemy_music;
+    private bool check = false;
+
     [SerializeField, Range(0.0f, 50.0f)] public float radius;
     
     [SerializeField, Range(0.0f, 360.0f)] public float angle;
@@ -37,6 +41,10 @@ public class FieldOfView : MonoBehaviour
         {
             yield return wait;
             FieldOfViewCheck();
+            if (check == false)
+            {
+                Enemy_music_source.Stop();
+            }
         }
     }
 
@@ -56,15 +64,28 @@ public class FieldOfView : MonoBehaviour
                 float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                {
                     canSeePlayer = true;
-                else
+                    if(check == false){
+                        check = true;
+                        Enemy_music_source.clip=Enemy_music;
+                        Enemy_music_source.Play();
+                    }
+                }
+                else{
                     canSeePlayer = false;
+                    check=false;
+                }
             }
-            else
+            else{
                 canSeePlayer = false;
+                check=false;
+            }
         }
-        else if (canSeePlayer)
+        else if (canSeePlayer){
             canSeePlayer = false;
+            check=false;
+        }
 
         if(oldCanSeePlayer != canSeePlayer)
         {
