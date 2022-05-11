@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 1108719254548387769}
   - component: {fileID: 2920022508997370739}
   - component: {fileID: 4559776570209624804}
-  m_Layer: 0
+  - component: {fileID: 8835640349670309983}
+  m_Layer: 6
   m_Name: crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2711,3 +2712,17 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!64 &8835640349670309983
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3712933602275705510}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

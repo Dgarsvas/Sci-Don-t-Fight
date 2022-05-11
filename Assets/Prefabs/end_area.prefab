@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8782458993859530949}
   - component: {fileID: 6774953866887586831}
   - component: {fileID: 5315634063630730572}
-  m_Layer: 0
+  - component: {fileID: 1521614247943487201}
+  m_Layer: 6
   m_Name: end_area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59800,3 +59801,17 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!64 &1521614247943487201
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973527417014568410}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
