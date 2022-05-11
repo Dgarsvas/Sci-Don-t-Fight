@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6013032183447787347}
   - component: {fileID: 4468453593093979189}
   - component: {fileID: 8087677636565527982}
-  - component: {fileID: 7955946882921526501}
+  - component: {fileID: -3535158733498792710}
   - component: {fileID: 4130602978597041567}
   - component: {fileID: 585747791880519102}
   m_Layer: 7
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7955946882921526501
+--- !u!135 &-3535158733498792710
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,4 +128,5 @@ MonoBehaviour:
   rb: {fileID: 4130602978597041567}
   force: 20
   damage: 10
+  range: 2.5
   particles: {fileID: 6709921867229905805, guid: 815fd6ce69d9b41bf8ffa5cf5b0a9379, type: 3}

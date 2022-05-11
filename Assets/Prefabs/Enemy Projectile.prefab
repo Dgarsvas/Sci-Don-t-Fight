@@ -131,8 +131,8 @@ MonoBehaviour:
   rb: {fileID: 4130602978597041567}
   force: 20
   damage: 20
+  range: 4
   LaunchAngle: 45.9
-  blastClip: {fileID: 6402080611751160152}
   particles: {fileID: 6709921867229905805, guid: af3d344417e1a2b49a7ff961c305c036, type: 3}
 --- !u!82 &-5714556483001326299
 AudioSource:

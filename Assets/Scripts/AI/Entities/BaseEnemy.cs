@@ -45,14 +45,7 @@ public class BaseEnemy : BaseEntity
 
     public override void TakeDamage(float damage, Vector3 dir)
     {
-        health -= damage;
-
-        if (health <= 0)
-        {
-            isDead = true;
-           // rb.isKinematic = false;
-           // rb.AddForce(dir * 500f);
-        }
+        // no damage to enemy
     }
 
     public override void Despawn()

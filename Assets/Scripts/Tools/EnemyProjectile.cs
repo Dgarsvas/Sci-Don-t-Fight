@@ -8,6 +8,7 @@ public class EnemyProjectile : Projectile
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float force;
     [SerializeField] private float damage;
+    [SerializeField] private float range;
     [Range(20.0f, 75.0f)] public float LaunchAngle;
 
     [SerializeField] private GameObject particles;
@@ -61,6 +62,21 @@ public class EnemyProjectile : Projectile
         if (entity != null)
         {
             entity.TakeDamage(damage, collision.impulse);
+        }
+        else
+        {
+            var hits = Physics.SphereCastAll(transform.position, range, Vector3.forward, 6);
+            if (hits.Length > 0)
+            {
+                foreach (var hit in hits)
+                {
+                    var ent = hit.collider.gameObject.GetComponent<BaseEntity>();
+                    if (ent != null)
+                    {
+                        ent.TakeDamage(damage, collision.impulse);
+                    }
+                }
+            }
         }
 
         transform.rotation = Quaternion.identity;
