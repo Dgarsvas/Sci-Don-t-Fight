@@ -5,6 +5,8 @@ public class InteractableSupply : InteractableBase
 {
     [SerializeField] private UnityEvent onButtonPress;
     [SerializeField] private Renderer rend;
+
+    [SerializeField] private BaseUsableSO UsableItemToGive;
     private Material mat;
 
     private void Awake()
@@ -15,7 +17,7 @@ public class InteractableSupply : InteractableBase
     public override void Highlight()
     {
         IsHighlighted = true;
-        rend.material = GameManager.Instance.highlightMat;
+        //rend.material = GameManager.Instance.highlightMat;
     }
 
     internal override void StopHighlight()
@@ -36,5 +38,10 @@ public class InteractableSupply : InteractableBase
     {
         Debug.Log("Interaction Start");
         onButtonPress?.Invoke();
+    }
+
+    public override BaseUsableSO GiveUsable()
+    {
+        return UsableItemToGive;
     }
 }
