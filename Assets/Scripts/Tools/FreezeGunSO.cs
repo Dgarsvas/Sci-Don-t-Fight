@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Usables/Gun")]
-public class GunSO : BaseUsableSO
+[CreateAssetMenu(menuName = "Usables/FreezeGun")]
+public class FreezeGunSO : BaseUsableSO
 {
     [SerializeField] private float rechargeTime;
     [SerializeField] private GameObject bullet;
+    [ColorUsage(true, true)] [SerializeField] private Color color;
     private float curRecharge;
     private Transform shootPoint;
 
@@ -48,6 +49,6 @@ public class GunSO : BaseUsableSO
 
     public override Color GetColor()
     {
-        throw new NotImplementedException();
+        return color;
     }
 }

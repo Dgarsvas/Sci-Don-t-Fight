@@ -21,4 +21,6 @@ public abstract class InteractableBase : MonoBehaviour
     public abstract void InteractionEnd();
     public abstract void Highlight();
     internal abstract void StopHighlight();
+
+    public virtual BaseUsableSO GiveUsable() { return null; }
 }

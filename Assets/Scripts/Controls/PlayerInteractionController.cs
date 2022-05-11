@@ -12,6 +12,8 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] LayerMask layers;
     [SerializeField] private KeyCode interactionKey;
 
+    [SerializeField] private Renderer playerRenderer;
+
     [ReadOnly] [SerializeField] private InteractableBase currentInteractable;
 
     private const int QUICK_ACCESS_AMOUNT = 3;
@@ -32,8 +34,6 @@ public class PlayerInteractionController : MonoBehaviour
         // ignore collisions between projectiles
         Physics.IgnoreLayerCollision(7, 7);
 
-        //quickAccessUsables = new BaseUsableSO[QUICK_ACCESS_AMOUNT];
-        ChangeCurrentSelection(0);
     }
 
 
@@ -41,10 +41,6 @@ public class PlayerInteractionController : MonoBehaviour
     {
         UpdateInteractionTarget();
 
-        if (HandleSelectionInputs(out int newSelection))
-        {
-            ChangeCurrentSelection(newSelection);
-        }
 
         HandleUseInputs();
 
@@ -54,6 +50,12 @@ public class PlayerInteractionController : MonoBehaviour
             if (Input.GetKeyDown(interactionKey))
             {
                 interactable.InteractionStart();
+
+                var usable = interactable.GiveUsable();
+                if(usable != null)
+                {
+                    ChangeCurrentSelection(usable);
+                }
             }
             else if (Input.GetKey(interactionKey))
             {
@@ -166,11 +168,11 @@ public class PlayerInteractionController : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    private void ChangeCurrentSelection(int select)
+    private void ChangeCurrentSelection(BaseUsableSO select)
     {
-        currentlySelected = quickAccessUsables[select];
+        currentlySelected = select;
+        playerRenderer.material.color = select.GetColor();
         currentlySelected.Setup(interactTarget);
-        currentSelection = select;
         UpdateDisplay();
     }
 
