@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 2896945945146236559}
   - component: {fileID: 2896945945146236558}
   - component: {fileID: 2896945945146236557}
+  - component: {fileID: 292439966488229387}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -279,6 +280,20 @@ MonoBehaviour:
   movement: {fileID: 2896945945146236559}
   mouseSensitivity: 250
   maxAngle: 85
+--- !u!114 &292439966488229387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896945945146236556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485fcee7a747e451083d006c7b6f6b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 420
+  respawnPoint: {fileID: 0}
 --- !u!1 &2896945946124439013
 GameObject:
   m_ObjectHideFlags: 0

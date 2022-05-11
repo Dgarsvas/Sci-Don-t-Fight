@@ -8,6 +8,7 @@ public class PlaceHolderProjectile : Projectile
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float force;
     [SerializeField] private float damage;
+    [SerializeField] private float range;
 
     [SerializeField] private GameObject particles;
 
@@ -33,6 +34,21 @@ public class PlaceHolderProjectile : Projectile
         {
             entity.TakeDamage(damage, collision.impulse);
             entity.GetFrozen(5.0f);
+        }
+        else
+        {
+            var hits = Physics.SphereCastAll(transform.position, range, Vector3.forward, 6);
+            if (hits.Length > 0)
+            {
+                foreach (var hit in hits)
+                {
+                    var ent = hit.collider.gameObject.GetComponent<BaseEntity>();
+                    if (ent != null)
+                    {
+                        ent.GetFrozen(5.0f);
+                    }
+                }
+            }
         }
 
         Instantiate(particles, transform.position, transform.rotation);
