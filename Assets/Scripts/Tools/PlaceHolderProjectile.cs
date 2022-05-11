@@ -32,7 +32,7 @@ public class PlaceHolderProjectile : Projectile
         if (entity != null)
         {
             entity.TakeDamage(damage, collision.impulse);
-            entity.GetFrozen(2.0f);
+            entity.GetFrozen(5.0f);
         }
 
         Instantiate(particles, transform.position, transform.rotation);

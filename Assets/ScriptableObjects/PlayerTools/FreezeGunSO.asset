@@ -15,4 +15,5 @@ MonoBehaviour:
   sprite: {fileID: 0}
   description: Freezy gunny hhehe
   rechargeTime: 5
-  bullet: {fileID: 5935518131626771607, guid: d2ad9c8c5d4d88b40b696e5dccb7d39b, type: 3}
+  bullet: {fileID: 5935518131626771607, guid: a42590176301c4eb2a53a51585df925e, type: 3}
+  color: {r: 0, g: 0.23024313, b: 9.849155, a: 1}
