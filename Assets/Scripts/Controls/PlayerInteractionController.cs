@@ -12,6 +12,8 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] LayerMask layers;
     [SerializeField] private KeyCode interactionKey;
 
+    [SerializeField] private Renderer playerRenderer;
+
     [ReadOnly] [SerializeField] private InteractableBase currentInteractable;
 
     private const int QUICK_ACCESS_AMOUNT = 3;
@@ -169,6 +171,7 @@ public class PlayerInteractionController : MonoBehaviour
     private void ChangeCurrentSelection(BaseUsableSO select)
     {
         currentlySelected = select;
+        playerRenderer.material.color = select.GetColor();
         currentlySelected.Setup(interactTarget);
         UpdateDisplay();
     }

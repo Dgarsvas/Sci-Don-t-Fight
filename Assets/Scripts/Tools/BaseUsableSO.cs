@@ -23,4 +23,6 @@ public abstract class BaseUsableSO : ScriptableObject
     public abstract void EndUse(UsageEnum usageType);
 
     public abstract void Setup(Transform point);
+
+    public abstract Color GetColor();
 }

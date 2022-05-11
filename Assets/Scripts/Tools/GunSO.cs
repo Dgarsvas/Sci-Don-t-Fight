@@ -45,4 +45,9 @@ public class GunSO : BaseUsableSO
         bullet.GetComponent<Projectile>().Launch();
         curRecharge = rechargeTime;
     }
+
+    public override Color GetColor()
+    {
+        throw new NotImplementedException();
+    }
 }

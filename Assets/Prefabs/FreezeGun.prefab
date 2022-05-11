@@ -124,3 +124,4 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   rend: {fileID: 4124705835246989494}
+  UsableItemToGive: {fileID: 11400000, guid: 68c23ba89e1714837a58189cf022d373, type: 2}

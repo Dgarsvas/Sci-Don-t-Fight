@@ -32,6 +32,8 @@ public class InteractableSupply : InteractableBase
 
     public override void InteractionEnd()
     {
+        Destroy(gameObject);
+        // TODO: play sound effect
     }
 
     public override void InteractionStart()

@@ -8,6 +8,7 @@ public class FreezeGunSO : BaseUsableSO
 {
     [SerializeField] private float rechargeTime;
     [SerializeField] private GameObject bullet;
+    [ColorUsage(true, true)] [SerializeField] private Color color;
     private float curRecharge;
     private Transform shootPoint;
 
@@ -44,5 +45,10 @@ public class FreezeGunSO : BaseUsableSO
         Instantiate(bullet, shootPoint.position, shootPoint.rotation);
         bullet.GetComponent<Projectile>().Launch();
         curRecharge = rechargeTime;
+    }
+
+    public override Color GetColor()
+    {
+        return color;
     }
 }

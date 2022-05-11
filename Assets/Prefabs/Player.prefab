@@ -253,6 +253,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 119
   interactionKey: 102
+  playerRenderer: {fileID: 2817294375065200302}
   currentInteractable: {fileID: 0}
   quickAccessUsables:
   - {fileID: 11400000, guid: 367bb2f1049a04b43aa4c05974443125, type: 2}
