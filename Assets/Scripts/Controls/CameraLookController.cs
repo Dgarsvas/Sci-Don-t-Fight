@@ -28,6 +28,11 @@ public class CameraLookController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
         HandleRotationAroundCharacter();
     }
 

@@ -5,6 +5,14 @@ using UnityEngine;
 
 public class PauseMenuController : MonoBehaviour
 {
+    public enum MenuState
+    {
+        NothingShown,
+        PauseShown,
+        DeathShown,
+        VictoryShown
+    }
+
     [SerializeField]
     private Camera blurCam;
 
@@ -17,7 +25,26 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField]
     private GameObject menuRect;
 
-    public bool IsShown
+    [SerializeField]
+    private GameObject deathRect;
+
+    [SerializeField]
+    private GameObject victoryRect;
+
+    [SerializeField]
+    private GameObject nextLevelButton;
+
+    private Transform curRespawnPoint;
+
+    private GameObject curPlayer;
+
+    public MenuState CurMenuState
+    {
+        get;
+        private set;
+    }
+
+    public static PauseMenuController Instance
     {
         get;
         private set;
@@ -27,7 +54,17 @@ public class PauseMenuController : MonoBehaviour
 
     private void Awake()
     {
-        IsShown = false;
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
+        Instance = this;
+        CurMenuState = MenuState.NothingShown;
+    }
+
+    public void SetRespawnPoint(Transform respawnPoint)
+    {
+        curRespawnPoint = respawnPoint;
     }
 
     void InitializeCamera()
@@ -43,15 +80,22 @@ public class PauseMenuController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(pauseMenuKey))
+        if (CurMenuState != MenuState.DeathShown && CurMenuState != MenuState.VictoryShown)
         {
-            if (IsShown)
+            if (Input.GetKeyDown(pauseMenuKey))
             {
-                Hide();
-            }
-            else
-            {
-                Show();
+                if (CurMenuState == MenuState.PauseShown)
+                {
+                    Hide();
+                    menuRect.SetActive(false);
+
+                }
+                else
+                {
+                    Show();
+                    CurMenuState = MenuState.PauseShown;
+                    menuRect.SetActive(true);
+                }
             }
         }
     }
@@ -62,25 +106,55 @@ public class PauseMenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
         Time.timeScale = 0f;
-        IsShown = true;
-        menuRect.SetActive(true);
     }
 
     public void Hide()
     {
         Cursor.lockState = previousCursorLockMode;
         Time.timeScale = 1f;
-        IsShown = false;
-        menuRect.SetActive(false);
-    }
-
-    public void SaveGameState()
-    {
-        Debug.LogWarning("NOT IMPLEMENTED");
+        CurMenuState = MenuState.NothingShown;
     }
 
     public void GoBackToMainMenu()
     {
         SceneTransitionManager.Instance.LoadMenu();
+    }
+
+    internal void ShowVictoryScreen()
+    {
+        Show();
+        CurMenuState = MenuState.VictoryShown;
+        victoryRect.SetActive(true);
+        nextLevelButton.SetActive(SceneTransitionManager.GetLevel() < 2);
+    }
+
+    public void NextLevelClicked()
+    {
+        Hide();
+        switch (SceneTransitionManager.GetLevel())
+        {
+            case 0:
+                SceneTransitionManager.Instance.LoadScene(SceneTransitionManager.LEVEL_1_NAME);
+                break;
+            case 1:
+                SceneTransitionManager.Instance.LoadScene(SceneTransitionManager.LEVEL_2_NAME);
+                break;
+        }
+    }
+
+    public void PlayerDied(GameObject player)
+    {
+        Show();
+        curPlayer = player;
+        CurMenuState = MenuState.DeathShown;
+        deathRect.SetActive(true);
+    }
+
+    public void RespawnClicked()
+    {
+        Hide();
+        curPlayer.transform.SetPositionAndRotation(curRespawnPoint.position, curRespawnPoint.rotation);
+        curPlayer.SetActive(true);
+        deathRect.SetActive(false);
     }
 }

@@ -6,10 +6,8 @@ public class PlayerEntity : BaseEntity
     [SerializeField] Transform respawnPoint;
     public override void Despawn() // more like respawn
     {
-        if (respawnPoint)
-            gameObject.transform.position = respawnPoint.position;
-        else
-            Debug.LogWarning("no respawn point, pls assign");
+        gameObject.SetActive(false);
+        PauseMenuController.Instance.PlayerDied(gameObject);
     }
 
     public override void GetFrozen(float freezeTime)

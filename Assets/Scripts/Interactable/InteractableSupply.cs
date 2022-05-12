@@ -9,9 +9,16 @@ public class InteractableSupply : InteractableBase
     [SerializeField] private BaseUsableSO UsableItemToGive;
     private Material mat;
 
+    private int messageId;
+
     private void Awake()
     {
         mat = rend.material;
+    }
+
+    private void Start()
+    {
+        messageId = MessageDisplaySystem.Instance.ShowMessage("Find the freeze gun!");
     }
 
     public override void Highlight()
@@ -39,6 +46,7 @@ public class InteractableSupply : InteractableBase
     public override void InteractionStart()
     {
         Debug.Log("Interaction Start");
+        MessageDisplaySystem.Instance.UpdateMessage(messageId, "Use the freeze gun!", 10);
         onButtonPress?.Invoke();
     }
 

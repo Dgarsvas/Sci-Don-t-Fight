@@ -36,6 +36,11 @@ public class PlayerMovementController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.Space))
         {
             if (IsOnGround())

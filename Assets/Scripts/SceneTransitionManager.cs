@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class SceneTransitionManager : MonoBehaviour
 {
+    public const string LEVEL_1_NAME = "LevelOneScene";
+    public const string LEVEL_2_NAME = "LevelTwoScene";
+
     public delegate void OnSceneLoadedHandler(string sceneName);
     public static event OnSceneLoadedHandler OnSceneLoadedEvent;
 
@@ -55,7 +58,7 @@ public class SceneTransitionManager : MonoBehaviour
         StartCoroutine(AnimateEnd());
     }
 
-    public bool LoadScene(string sceneName, Action onSceneLoad = null)
+    public bool LoadScene(string sceneName, Action onSceneLoad = null, bool setSavedScene = true)
     {
         if (IsTransitionActive)
         {
@@ -64,7 +67,10 @@ public class SceneTransitionManager : MonoBehaviour
 
         IsTransitionActive = true;
 
-        PlayerPrefs.SetString("lastLevel", sceneName); //TODO make an actual save system
+        if (setSavedScene)
+        {
+            PlayerPrefs.SetString("lastLevel", sceneName);
+        }
 
         Application.backgroundLoadingPriority = ThreadPriority.Low;
 
@@ -99,7 +105,7 @@ public class SceneTransitionManager : MonoBehaviour
                 operation.allowSceneActivation = true;
             }
             loadingSlider.value = operation.progress;
-            
+
             yield return null;
         }
 
@@ -123,9 +129,14 @@ public class SceneTransitionManager : MonoBehaviour
 
         IsTransitionActive = false;
     }
-    
+
     public void LoadMenu()
     {
-        LoadScene("MenuScene");
-    }   
+        LoadScene("MenuScene", onSceneLoad: null, false);
+    }
+
+    public static int GetLevel()
+    {
+        return SceneManager.GetActiveScene().buildIndex - 1;
+    }
 }

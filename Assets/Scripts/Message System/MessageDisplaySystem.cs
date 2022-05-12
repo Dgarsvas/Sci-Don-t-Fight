@@ -57,8 +57,9 @@ public class MessageDisplaySystem : MonoBehaviour
 
     public int ShowMessage(string message, float duration = -1)
     {
+        idCounter++;
         Message newMessage = Instantiate(messagePrefab, parent).GetComponent<Message>();
-        newMessage.Init(message, idCounter++, duration);
+        newMessage.Init(message, idCounter, duration);
         shownMessages.Add(newMessage);
         return idCounter;
     }
